@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
 
-/*O chamando Controller são as servlets ou ServletLoginController*/
+/*O chamando Controller sï¿½o as servlets ou ServletLoginController*/
 @WebServlet(urlPatterns = {"/principal/ServletLogin", "/ServletLogin"}) /*Mapeamento de URL que vem da tela*/
 public class ServletLogin extends HttpServlet {
 	
@@ -27,7 +27,7 @@ public class ServletLogin extends HttpServlet {
 
     /*Recebe os dados pela url em parametros*/
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		doPost(request, response);
 	}
 
 	
@@ -64,13 +64,16 @@ public class ServletLogin extends HttpServlet {
 					}
 					
 				}else {
-					RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
+					RequestDispatcher redirecionar = request.getRequestDispatcher("/index.jsp");
 					request.setAttribute("msg", "Informe o login e senha corretamente!");
 					redirecionar.forward(request, response);
 				}
 		
 		}catch (Exception e) {
 			e.printStackTrace();
+			RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
+			request.setAttribute("msg",  e.getMessage());
+			redirecionar.forward(request, response);
 		}
 		
 	}
