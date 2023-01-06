@@ -90,7 +90,7 @@
                           </li>
                           <li class="user-profile header-notification">
                               <a href="#!" class="waves-effect waves-light">
-                                  <img src="request.getContextPath() %>/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                  <img src="<%= request.getContextPath() %>/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                                   <span><%= session.getAttribute("usuario") %></span>
                                   <i class="ti-angle-down"></i>
                               </a>
@@ -116,7 +116,7 @@
                                       </a>
                                   </li>
                                   <li class="waves-effect waves-light">
-                                      <a href="ServletLogin?acao=logout">
+                                      <a href="<%= request.getContextPath() %>/ServletLogin?acao=logout">
                                           <i class="ti-layout-sidebar-left"></i> Logout
                                       </a>
                                   </li>

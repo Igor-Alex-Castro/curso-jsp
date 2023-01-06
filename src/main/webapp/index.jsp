@@ -40,7 +40,7 @@ h5 {
 	<h5>Bem vindo ao curso de JSP</h5>
 
 
-	<form action="ServletLogin" class="row g-3  needs-validation"
+	<form action="<%= request.getContextPath() %>/ServletLogin" class="row g-3  needs-validation"
 		novalidate method="post">
 		<input type="hidden" value="<%=request.getParameter("url")%>"
 			name="url">
