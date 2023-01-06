@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
 
-@WebServlet("/ServletUsuarioController")
+@WebServlet(urlPatterns = {"/ServletUsuarioController"})
 public class ServletUsuarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -22,6 +22,12 @@ public class ServletUsuarioController extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		String id = request.getParameter("id");
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
@@ -36,16 +42,10 @@ public class ServletUsuarioController extends HttpServlet {
 		modelLogin.setNome(nome);
 		modelLogin.setEmail(email);
 		modelLogin.setLogin(login);
-		modelLogin.getSenha();
+		modelLogin.setSenha(senha);
 		
-		RequestDispatcher redireciona = request.getRequestDispatcher("principal/usuario.jsp");
+		RequestDispatcher redireciona = request.getRequestDispatcher("/principal/usuario.jsp");
 		redireciona.forward(request, response);
-		
-	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		
 	}
 
