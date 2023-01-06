@@ -36,44 +36,38 @@
 
 
 
-														<form class="form-material">
+														<form class="form-material" action="<%= request.getContextPath() %>/ServletUsuarioController" method="post">
 															<div class="form-group form-default">
-																<input type="text" name="footer-email"
-																	class="form-control" required=""> <span
+																<input type="text" name="id" id="id" readonly="readonly"
+																	class="form-control"> <span
 																	class="form-bar"></span> <label class="float-label">ID:</label>
 															</div>
 															<div class="form-group form-default">
-																<input type="text" name="footer-email"
-																	class="form-control" required="" value=""> <span
+																<input type="text" name="nome" id="nome" required="required"
+																	class="form-control"  value=""> <span
 																	class="form-bar"></span> <label class="float-label">Nome:</label>
 															</div>
 
 															<div class="form-group form-default">
-																<input type="text" name="footer-email"
-																	class="form-control" required=""> <span
-																	class="form-bar"></span> <label class="float-label">Email:</label>
+																<input type="email" name="email" id="email" autocomplete="off" required="required"
+																	class="form-control" > <span
+																	class="form-bar"></span> <label class="float-label" >Email:</label>
+															</div>
+															
+															<div class="form-group form-default">
+																<input type="text" name="login" id="login" required="required"
+																	class="form-control"  value=""> <span
+																	class="form-bar"></span> <label class="float-label">Login:</label>
 															</div>
 															<div class="form-group form-default">
-																<input type="password" name="footer-email"
-																	class="form-control" required=""> <span
+																<input type="password" name="senha" id="senha" autocomplete="off" required="required"
+																	class="form-control"> <span
 																	class="form-bar"></span> <label class="float-label">Password:</label>
 															</div>
-															<button class="btn btn-primary waves-effect waves-light">Primary
-																Button</button>
-															<button class="btn btn-success waves-effect waves-light">Success
-																Button</button>
-															<button class="btn btn-info waves-effect waves-light">Info
-																Button</button>
-															<button class="btn btn-warning waves-effect waves-light">Warning
-																Button</button>
-															<button class="btn btn-danger waves-effect waves-light">Danger
-																Button</button>
-															<button class="btn btn-inverse waves-effect waves-light">Inverse
-																Button</button>
-															<button
-																class="btn btn-disabled disabled waves-effect waves-light">Disabled
-																Button</button>
-
+															<button class="btn btn-primary waves-effect waves-light">Novo</button>
+															<button class="btn btn-success waves-effect waves-light">Salvar</button>
+															<button class="btn btn-info waves-effect waves-light">Excluir</button>
+														
 														</form>
 
 
