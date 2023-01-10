@@ -38,30 +38,30 @@
 
 														<form class="form-material" action="<%= request.getContextPath() %>/ServletUsuarioController" method="post">
 															<div class="form-group form-default">
-																<input type="text" name="id" id="id" readonly="readonly"
+																<input type="text" name="id" id="id" readonly="readonly" value="${modelLogin.id}"
 																	class="form-control"> <span
 																	class="form-bar"></span> <label class="float-label">ID:</label>
 															</div>
 															<div class="form-group form-default">
 																<input type="text" name="nome" id="nome" required="required"
-																	class="form-control"  value=""> <span
+																	class="form-control"  value="${modelLogin.nome}"> <span
 																	class="form-bar"></span> <label class="float-label">Nome:</label>
 															</div>
 
 															<div class="form-group form-default">
 																<input type="email" name="email" id="email" autocomplete="off" required="required"
-																	class="form-control" > <span
+																	class="form-control" value="${modelLogin.email}"> <span
 																	class="form-bar"></span> <label class="float-label" >Email:</label>
 															</div>
 															
 															<div class="form-group form-default">
 																<input type="text" name="login" id="login" required="required"
-																	class="form-control"  value=""> <span
+																	class="form-control"  value="${modelLogin.login}"> <span
 																	class="form-bar"></span> <label class="float-label">Login:</label>
 															</div>
 															<div class="form-group form-default">
 																<input type="password" name="senha" id="senha" autocomplete="off" required="required"
-																	class="form-control"> <span
+																	class="form-control" value="${modelLogin.senha}"> <span
 																	class="form-bar"></span> <label class="float-label">Password:</label>
 															</div>
 															<button class="btn btn-primary waves-effect waves-light">Novo</button>
