@@ -76,7 +76,7 @@
 											</div>
 										</div>
 									</div>
-
+											<span>${msg}</span>						
 
 
 									<!-- Page-body end -->
