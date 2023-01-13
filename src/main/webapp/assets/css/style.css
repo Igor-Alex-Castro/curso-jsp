@@ -10358,7 +10358,10 @@ body.menu-bottom #collapse-menu {
   position: relative; }
   .form-material .form-group.form-static-label .form-control ~ .float-label {
     top: -14px;
-    font-size: 11px; }
+    font-size: 11px; 
+    }
+
+
 .form-material .form-control {
   display: inline-block;
   height: 43px;
