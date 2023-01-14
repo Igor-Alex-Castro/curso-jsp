@@ -34,12 +34,11 @@ public class ServletUsuarioController extends HttpServlet {
 			String idUser = request.getParameter("id");
 			daoUsuarioRepository.deletarUser(idUser);
 			request.setAttribute("msg", "Excluido com sucesso");
-			request.getRequestDispatcher("usuario.jsp").forward(request, response);
 			System.out.println("deleta2");
 			
 		}
-		System.out.println("deleta3");
 		request.getRequestDispatcher("/principal/usuario.jsp").forward(request, response);
+	
 	} catch (Exception e) {
 			e.printStackTrace();
 			RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
