@@ -28,3 +28,7 @@ ALTER TABLE public.model_login
   INSERT INTO public.model_login(
             login, senha)
     VALUES ( 'admin', 'admin');
+    
+    
+ SELECT COUNT(1) > 0 FROM model_login where UPPER(login) = upper('admin');
+ 
