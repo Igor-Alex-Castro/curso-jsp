@@ -84,6 +84,9 @@
 															<button type="button"
 																class="btn btn-info waves-effect waves-light"
 																onclick=" criarDeleteComAjax();">Excluir</button>
+															<button type="button" class="btn btn-secondaey"
+																data-toggle="modal" data-target="#exampleModalUsuario">
+																Pesquisar</button>
 
 														</form>
 
@@ -110,31 +113,57 @@
 	<!-- Required Jquery -->
 	<jsp:include page="javascript-file.jsp"></jsp:include>
 
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalUsuario" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Pesquisa de usuario</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+				...
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Fechar</button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<script type="text/javascript">
-	
 		function criarDeleteComAjax() {
-			if(confirm('Deseja realmente excluir os dados?')){
+			if (confirm('Deseja realmente excluir os dados?')) {
 				var urlAction = document.getElementById('formUser').action;
 				var idUser = document.getElementById('id').value;
-				
+
 				$.ajax({
-					
-					metho: "get",
-					url: urlAction,
-					data: "id=" + idUser + "&acao=deletarAjax",
-					success: function(response) {
+
+					metho : "get",
+					url : urlAction,
+					data : "id=" + idUser + "&acao=deletarAjax",
+					success : function(response) {
 						limparForm();
-					   document.getElementById('msg').textContent = response;
+						document.getElementById('msg').textContent = response;
 					}
-					
-					
-				}).fail(function(xhr, status, errorThrown){
-					alert('Erro ao deletar usuário por id:' + xhr.responseText);
-				});	
-				
+
+				}).fail(
+						function(xhr, status, errorThrown) {
+							alert('Erro ao deletar usuário por id:'
+									+ xhr.responseText);
+						});
+
 			}
 		}
-	
+
 		function limparForm() {
 
 			//document.getElementById("formUser").reset;
@@ -145,17 +174,15 @@
 				elements[p].value = '';
 			}
 		}
-		
+
 		function criarDelete() {
-			if(confirm('Deseja realmente excluir os dados?')){
+			if (confirm('Deseja realmente excluir os dados?')) {
 				document.getElementById("formUser").method = 'get';
 				document.getElementById("acao").value = 'deletar';
 				document.getElementById("formUser").submit();
 			}
-			
-			
-		}
 
+		}
 	</script>
 </body>
 
