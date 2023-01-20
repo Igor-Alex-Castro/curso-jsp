@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +100,27 @@
 										</div>
 									</div>
 									<span id="msg">${msg}</span>
+									<div style="height: 300px; overflow: scroll;">
+										<table class="table" id="tabelaresultadosview">
+											<thead>
+												<tr>
+													<th scope="col">ID</th>
+													<th scope="col">Nome</th>
+													<th scope="col">Ver</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach items='${modelLogins}' var='ml'>
+													<tr>
+														<td><c:out value="${ml.id}"></c:out></td>
+														<td><c:out value="${ml.nome}"></c:out></td>
+														<td><a  class="btn btn-success" href="<%= request.getContextPath() %>/ServletUsuarioController?acao=buscarEditar&id=${ml.id}">Ver</a></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
 
+									</div>
 
 									<!-- Page-body end -->
 								</div>
@@ -140,7 +160,7 @@
 								onclick="buscarUsuario();">Buscar</button>
 						</div>
 					</div>
-					<div style="height: 300px; overflow: scroll;" >
+					<div style="height: 300px; overflow: scroll;">
 						<table class="table" id="tabelaresultados">
 							<thead>
 								<tr>
@@ -153,7 +173,7 @@
 
 							</tbody>
 						</table>
-						
+
 					</div>
 					<span id="totalresultados"></span>
 				</div>
@@ -186,13 +206,24 @@
 
 										var json = JSON.parse(response);
 
-										$('tabelaresultados > tbody > tr').remove();
+										$('tabelaresultados > tbody > tr')
+												.remove();
 
 										for (var p = 0; p < json.length; p++) {
-											$('#tabelaresultados > tbody').append('<tr><td>'+ json[p].id+ '</td><td>'+ json[p].nome	+ '</td><td><button type="button" onclick="verEditar('+ json[p].id +');" class="btn btn-info">Ver</button></td> </tr>');
+											$('#tabelaresultados > tbody')
+													.append(
+															'<tr><td>'
+																	+ json[p].id
+																	+ '</td><td>'
+																	+ json[p].nome
+																	+ '</td><td><button type="button" onclick="verEditar('
+																	+ json[p].id
+																	+ ');" class="btn btn-info">Ver</button></td> </tr>');
 										}
-										
-									   document.getElementById('totalresultados').textContent = 'Resultados: ' + json.length ;
+
+										document
+												.getElementById('totalresultados').textContent = 'Resultados: '
+												+ json.length;
 
 									}
 
@@ -203,11 +234,11 @@
 								});
 			}
 		}
-		
+
 		function verEditar(id) {
 			var urlAction = document.getElementById('formUser').action;
-			
-			window.location.href = urlAction + '?acao=buscarEditar&id='+id;
+
+			window.location.href = urlAction + '?acao=buscarEditar&id=' + id;
 		}
 
 		function criarDeleteComAjax() {

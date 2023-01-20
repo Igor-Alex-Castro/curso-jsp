@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
-@WebServlet(urlPatterns = { "/ServletUsuarioController" })
+@WebServlet(urlPatterns = { "/ServletUsuarioController"})
 public class ServletUsuarioController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -36,6 +36,10 @@ public class ServletUsuarioController extends HttpServlet {
 			if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletar")) {
 				String idUser = request.getParameter("id");
 				daoUsuarioRepository.deletarUser(idUser);
+				
+				List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
+				request.setAttribute("modelLogins", modelLogins);
+				
 				request.setAttribute("msg", "Excluido com sucesso");
 		
 				request.getRequestDispatcher("/principal/usuario.jsp").forward(request, response);
@@ -67,11 +71,26 @@ public class ServletUsuarioController extends HttpServlet {
 				String id = request.getParameter("id");
 				ModelLogin modelLogin = daoUsuarioRepository.consultarUsuarioId(id);
 				
+				List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
+				request.setAttribute("modelLogins", modelLogins);
+				
 				request.setAttribute("msg", "Usuário em edição");
 				request.setAttribute("modelLogin", modelLogin);
 				request.getRequestDispatcher("/principal/usuario.jsp").forward(request, response);
 				
+			}else if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("listarUser")) {
+				List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
+				
+				request.setAttribute("msg", "Usuários carregados");
+				request.setAttribute("modelLogins", modelLogins);
+				request.getRequestDispatcher("/principal/usuario.jsp").forward(request, response);
+				
+				
 			}else {
+				
+				List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
+				request.setAttribute("modelLogins", modelLogins);
+				
 				request.getRequestDispatcher("/principal/usuario.jsp").forward(request, response);
 			}
 			
@@ -118,6 +137,10 @@ public class ServletUsuarioController extends HttpServlet {
 				modelLogin = daoUsuarioRepository.gravarUsuario(modelLogin);
 
 			}
+			
+			List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
+			request.setAttribute("modelLogins", modelLogins);
+			
 
 			request.setAttribute("msg", msg);
 			request.setAttribute("modelLogin", modelLogin);
