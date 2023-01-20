@@ -55,7 +55,7 @@ public class DAOUsuarioRepository {
 		
 		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
 		
-		String sql = "SELECT * FROM MODEL_LOGIN";
+		String sql = "SELECT * FROM MODEL_LOGIN WHERE USERADMIN IS FALSE";
 		PreparedStatement statement = connection.prepareStatement(sql);
 		
 		ResultSet resultado =  statement.executeQuery();
@@ -79,7 +79,7 @@ public class DAOUsuarioRepository {
 		
 		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
 		
-		String sql = "SELECT * FROM MODEL_LOGIN WHERE UPPER(NOME) LIKE UPPER(?)";		
+		String sql = "SELECT * FROM MODEL_LOGIN WHERE UPPER(NOME) LIKE UPPER(?) AND USERADMIN IS FALSE";		
 		PreparedStatement statement =  connection.prepareStatement(sql);
 		statement.setString(1, "%" + nome + "%");
 		
@@ -105,7 +105,7 @@ public class DAOUsuarioRepository {
 	public ModelLogin consultarUsurio(String login) throws SQLException {
 		ModelLogin modelLogin = new ModelLogin();
 
-		String sql = "SELECT * FROM model_login where UPPER(LOGIN) =  UPPER('" + login + "')";
+		String sql = "SELECT * FROM model_login where UPPER(LOGIN) =  UPPER('" + login + "') AND USERADMIN IS FALSE";
 		PreparedStatement statement = connection.prepareStatement(sql);
 
 		ResultSet resultSet = statement.executeQuery();
@@ -126,7 +126,7 @@ public class DAOUsuarioRepository {
 	public ModelLogin consultarUsuarioId(String id) throws SQLException {
 		ModelLogin modelLogin = new ModelLogin();
 		
-		String sql = "SELECT * FROM model_login where id = ?";
+		String sql = "SELECT * FROM model_login where id = ? AND USERADMIN IS FALSE";
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setLong(1, Long.parseLong( id));
 		
@@ -158,7 +158,7 @@ public class DAOUsuarioRepository {
 	
 	public void deletarUser(String idUser) throws SQLException {
 		
-		String sql = "DELETE FROM public.model_login WHERE id = ?";
+		String sql = "DELETE FROM public.model_login WHERE id = ? AND USERADMIN IS FALSE";
 		
 		PreparedStatement prepareSql = connection.prepareStatement(sql);
 		
