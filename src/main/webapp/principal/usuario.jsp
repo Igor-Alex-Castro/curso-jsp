@@ -65,6 +65,17 @@
 																<span class="form-bar"></span> <label
 																	class="float-label" style="color: black;">Email:</label>
 															</div>
+															<div class="form-group form-default form-static-label">
+																<select  class="form-control"
+																	aria-label="Default select example" name="perfil">
+																	<option disabled="disabled">[Selecione o perfil]</option>
+																	<option value="ADMIN">Admin</option>
+																	<option value="SECRETARIO">Secretário</option>
+																	<option value="AUXILIAR">Auxiliar</option>
+																</select>
+																<span class="form-bar"></span>
+																<label class="float-label">Perfil:</label>
+															</div>
 
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="login" id="login"
@@ -114,7 +125,8 @@
 													<tr>
 														<td><c:out value="${ml.id}"></c:out></td>
 														<td><c:out value="${ml.nome}"></c:out></td>
-														<td><a  class="btn btn-success" href="<%= request.getContextPath() %>/ServletUsuarioController?acao=buscarEditar&id=${ml.id}">Ver</a></td>
+														<td><a class="btn btn-success"
+															href="<%= request.getContextPath() %>/ServletUsuarioController?acao=buscarEditar&id=${ml.id}">Ver</a></td>
 													</tr>
 												</c:forEach>
 											</tbody>

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.tomcat.dbcp.dbcp2.DelegatingPreparedStatement;
+
 import connection.SingleConnectionBanco;
 import model.ModelLogin;
 
@@ -21,7 +23,7 @@ public class DAOUsuarioRepository {
 	public ModelLogin gravarUsuario(ModelLogin objeto,  Long userLogado) throws SQLException {
 
 		if (objeto.isNovo()) {/*Grava um novo*/
-			String sql = "INSERT INTO public.model_login (login, senha, nome, email, usuario_id) VALUES (?, ?, ?, ?, ?);";
+			String sql = "INSERT INTO public.model_login (login, senha, nome, email, usuario_id, perfil) VALUES (?, ?, ?, ?, ?, ?);";
 
 			PreparedStatement preparedSql = connection.prepareStatement(sql);
 
@@ -30,12 +32,13 @@ public class DAOUsuarioRepository {
 			preparedSql.setString(3, objeto.getNome());
 			preparedSql.setString(4, objeto.getEmail());
 			preparedSql.setLong(5, userLogado);
+			preparedSql.setString(6, objeto.getPerfil());
 
 			preparedSql.execute();
 
 			connection.commit();
 		}else {
-			String sql = "UPDATE public.model_login SET login=?, senha=?, nome=?, email=? WHERE id = " + objeto.getId() + "";
+			String sql = "UPDATE public.model_login SET login=?, senha=?, nome=?, email=?, perfil=? WHERE id = " + objeto.getId() + "";
 
 			PreparedStatement preparedSql = connection.prepareStatement(sql);
 			
@@ -43,6 +46,7 @@ public class DAOUsuarioRepository {
 			preparedSql.setString(2, objeto.getSenha());
 			preparedSql.setString(3, objeto.getNome());
 			preparedSql.setString(4, objeto.getEmail());
+			preparedSql.setString(5, objeto.getPerfil());
 			
 			preparedSql.executeUpdate();
 			
@@ -141,6 +145,7 @@ public class DAOUsuarioRepository {
 			modelLogin.setSenha(resultSet.getString("senha"));
 			modelLogin.setNome(resultSet.getString("nome"));
 			modelLogin.setUseradmin(resultSet.getBoolean("useradmin") );
+			modelLogin.setPerfil(resultSet.getString("perfil"));
 		
 		}
 
