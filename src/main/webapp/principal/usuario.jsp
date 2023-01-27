@@ -116,6 +116,33 @@
 																<span class="form-bar"></span> <label
 																	class="float-label" style="color: black;">Password:</label>
 															</div>
+															<div class="form-group form-default form-static-label">
+																<input type="radio" name="sexo" checked="checked" value="MASCULINO" <%
+																 
+																modelLogin = (ModelLogin) request.getAttribute("modelLogin");
+																
+																if(modelLogin != null && modelLogin.getSexo().equals("MASCULINO")){
+																	out.print("");
+																	out.print("checked=\"checked\"");
+																	out.print("");
+																}
+																
+																%>>Masculino</>
+																
+																<input type="radio" name="sexo" value="FEMININO" <% 
+																	
+																modelLogin = (ModelLogin) request.getAttribute("modelLogin");
+																	
+																	if(modelLogin != null && modelLogin.getSexo().equals("FEMININO")){
+																		out.print("");
+																		out.print("checked=\"checked\"");
+																		out.print("");
+																	}
+																%>
+																
+																>Feminino</>
+															</div>
+															
 															<button type="button"
 																class="btn btn-primary waves-effect waves-light"
 																onclick="limparForm();">Novo</button>
