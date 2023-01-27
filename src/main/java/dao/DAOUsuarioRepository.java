@@ -39,7 +39,7 @@ public class DAOUsuarioRepository {
 
 			connection.commit();
 		}else {
-			String sql = "UPDATE public.model_login SET login=?, senha=?, nome=?, email=?, perfil=? WHERE id = " + objeto.getId() + "";
+			String sql = "UPDATE public.model_login SET login=?, senha=?, nome=?, email=?, perfil=?, sexo=? WHERE id = " + objeto.getId() + "";
 
 			PreparedStatement preparedSql = connection.prepareStatement(sql);
 			

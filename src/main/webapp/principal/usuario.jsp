@@ -40,16 +40,22 @@
 
 
 
-														<form class="form-material"
+														<form class="form-material" enctype="multpart/form-data"
 															action="<%=request.getContextPath()%>/ServletUsuarioController"
 															method="post" id="formUser">
 															<input type="hidden" name="acao" id="acao" value="">
-
+																							
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="id" id="id" readonly="readonly"
 																	value="${modelLogin.id}" class="form-control">
 																<span class="form-bar"></span> <label
 																	class="float-label" style="color: black;">ID:</label>
+															</div>
+															<div class="form-group form-default input-group mb-4">
+															 	<div class="input-group-prepend">
+															 		<img alt="Imagem user" src="https://logodownload.org/wp-content/uploads/2017/04/java-logo.png" width="70px">
+															 	</div>
+															 	<input type="file" class="form-control-file" style="margin-top: 15px; margin-left: 5px">
 															</div>
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="nome" id="nome"
