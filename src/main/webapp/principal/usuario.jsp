@@ -1,9 +1,9 @@
-<%@page import="model.ModelLogin"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@page import="model.ModelLogin"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +40,7 @@
 
 
 
-														<form class="form-material" enctype="multpart/form-data"
+														<form class="form-material" enctype="multipart/form-data"
 															action="<%=request.getContextPath()%>/ServletUsuarioController"
 															method="post" id="formUser">
 															<input type="hidden" name="acao" id="acao" value="">
@@ -53,9 +53,9 @@
 															</div>
 															<div class="form-group form-default input-group mb-4">
 															 	<div class="input-group-prepend">
-															 		<img alt="Imagem user" src="https://logodownload.org/wp-content/uploads/2017/04/java-logo.png" width="70px">
+															 		<img alt="Imagem user" id="fotoembase64" src="" width="70px">
 															 	</div>
-															 	<input type="file" class="form-control-file" style="margin-top: 15px; margin-left: 5px">
+															 	<input type="file" id="fileFoto" name="fileFoto"  onchange="visualizarImg('fotoembase64', 'fileFoto');" class="form-control-file" style="margin-top: 15px; margin-left: 5px">
 															</div>
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="nome" id="nome"
@@ -354,6 +354,25 @@
 			}
 
 		}
+		
+		function visualizarImg(fotoembase64, fileFoto) {
+			
+			var preview = document.getElementById(fotoembase64);// campo IMG html
+			var fileUser = document.getElementById(fileFoto).files[0];
+			var reader = new FileReader();
+			
+			reader.onloadend = function () {
+				preview.src = reader.result; // carrega a foto na tela
+			}
+			
+			if(fileUser){
+				reader.readAsDataURL(fileUser);/*Preview da imagem*/
+			}else{
+				preview.src = '';
+			}
+			
+		}
+		
 	</script>
 </body>
 

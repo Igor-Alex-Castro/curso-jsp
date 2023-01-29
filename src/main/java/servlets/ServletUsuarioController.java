@@ -1,23 +1,26 @@
 package servlets;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonParser;
+
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import dao.DAOLoginRepository;
 import dao.DAOUsuarioRepository;
+import jakarta.mail.Part;
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.annotation.*;
+import jakarta.servlet.http.*;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
-@MultipartConfig
+@MultipartConfig(fileSizeThreshold = 1024 * 1024,
+maxFileSize = 1024 * 1024 * 5, 
+maxRequestSize = 1024 * 1024 * 5 * 5)
 @WebServlet(urlPatterns = { "/ServletUsuarioController"})
 public class ServletUsuarioController extends ServletGenericUtil {
 
@@ -106,7 +109,7 @@ public class ServletUsuarioController extends ServletGenericUtil {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(jakarta.servlet.http.HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		try {
@@ -120,6 +123,7 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			String senha = request.getParameter("senha");
 			String perfil = request.getParameter("perfil");
 			String sexo  = request.getParameter("sexo");
+			
 
 			System.out.println(nome);
 
@@ -131,7 +135,9 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			modelLogin.setSenha(senha);
 			modelLogin.setPerfil(perfil);
 			modelLogin.setSexo(sexo);
-
+			
+		    
+			
 			if (daoUsuarioRepository.validaLogin(modelLogin.getLogin()) && modelLogin.getId() == null) {
 				msg = "Já existe usuário com o mesmo login, informe outro login";
 			} else {
