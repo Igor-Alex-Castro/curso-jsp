@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.tomcat.dbcp.dbcp2.DelegatingPreparedStatement;
+
 
 import connection.SingleConnectionBanco;
 import model.ModelLogin;
@@ -38,6 +38,20 @@ public class DAOUsuarioRepository {
 			preparedSql.execute();
 
 			connection.commit();
+			
+			if(objeto.getFotoUser() != null && !objeto.getFotoUser().isEmpty()) {
+				sql = "update model_login login set fotouser = ?,  extensaofotouser = ? where login = ?";
+				
+				preparedSql = connection.prepareStatement(sql);
+				
+				preparedSql.setString(1, objeto.getFotoUser());
+				preparedSql.setString(2, objeto.getExtensaoFotoUser());
+				preparedSql.setString(3, objeto.getLogin());
+				
+				preparedSql.execute();
+				connection.commit();
+				
+			}
 		}else {
 			String sql = "UPDATE public.model_login SET login=?, senha=?, nome=?, email=?, perfil=?, sexo=? WHERE id = " + objeto.getId() + "";
 
@@ -52,7 +66,21 @@ public class DAOUsuarioRepository {
 			
 			preparedSql.executeUpdate();
 			
-			connection.commit();		
+			connection.commit();	
+			
+			if(objeto.getFotoUser() != null && !objeto.getFotoUser().isEmpty()) {
+				sql = "update model login set fotouser = ?,  extensaofotouser = ? where login = ?";
+				
+				preparedSql = connection.prepareStatement(sql);
+				
+				preparedSql.setString(1, objeto.getFotoUser());
+				preparedSql.setString(2, objeto.getExtensaoFotoUser());
+				preparedSql.setLong(3,   objeto.getId() );
+				
+				preparedSql.execute();
+				connection.commit();
+				
+			}
 		}
 		
 		return this.consultarUsurio(objeto.getLogin(), userLogado);

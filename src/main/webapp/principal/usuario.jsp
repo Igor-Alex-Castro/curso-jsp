@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@page import="model.ModelLogin"%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +57,7 @@
 															 	<div class="input-group-prepend">
 															 		<img alt="Imagem user" id="fotoembase64" src="" width="70px">
 															 	</div>
-															 	<input type="file" id="fileFoto" name="fileFoto"  onchange="visualizarImg('fotoembase64', 'fileFoto');" class="form-control-file" style="margin-top: 15px; margin-left: 5px">
+															 	<input type="file" id="fileFoto" name="fileFoto" accept="image/*" onchange="visualizarImg('fotoembase64', 'fileFoto');" class="form-control-file" style="margin-top: 15px; margin-left: 5px">
 															</div>
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="nome" id="nome"
@@ -169,6 +171,8 @@
 										</div>
 									</div>
 									<span id="msg">${msg}</span>
+									<span id="msgFoto">${msgFoto}</span>
+								
 									<div style="height: 300px; overflow: scroll;">
 										<table class="table" id="tabelaresultadosview">
 											<thead>
