@@ -36,7 +36,7 @@ public class ModelLogin implements Serializable {
 		return extensaoFotoUser;
 	}
 
-	public void setEstensaoFotoUser(String extensaoFotoUser) {
+	public void setExtensaoFotoUser(String extensaoFotoUser) {
 		this.extensaoFotoUser = extensaoFotoUser;
 	}
 

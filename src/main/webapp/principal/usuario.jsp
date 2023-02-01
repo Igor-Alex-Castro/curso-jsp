@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 
 <%@page import="model.ModelLogin"%>
 
@@ -46,7 +47,7 @@
 															action="<%=request.getContextPath()%>/ServletUsuarioController"
 															method="post" id="formUser">
 															<input type="hidden" name="acao" id="acao" value="">
-																							
+
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="id" id="id" readonly="readonly"
 																	value="${modelLogin.id}" class="form-control">
@@ -54,10 +55,23 @@
 																	class="float-label" style="color: black;">ID:</label>
 															</div>
 															<div class="form-group form-default input-group mb-4">
-															 	<div class="input-group-prepend">
-															 		<img alt="Imagem user" id="fotoembase64" src="" width="70px">
-															 	</div>
-															 	<input type="file" id="fileFoto" name="fileFoto" accept="image/*" onchange="visualizarImg('fotoembase64', 'fileFoto');" class="form-control-file" style="margin-top: 15px; margin-left: 5px">
+																<div class="input-group-prepend">
+																	<c:if
+																		test="${modelLogin.fotoUser != '' && modelLogin.fotoUser != null}">
+																		<img alt="Imagem user" id="fotoembase64"
+																			src="${modelLogin.fotoUser}" width="70px">
+																	</c:if>
+																	<c:if
+																		test="${modelLogin.fotoUser == '' || modelLogin.fotoUser == null }">
+																		<img alt="Imagem user" id="fotoembase64"
+																			src="assets\images\avatar-user.jpg" width="70px">
+																	</c:if>
+																</div>
+																<input type="file" id="fileFoto" name="fileFoto"
+																	accept="image/*"
+																	onchange="visualizarImg('fotoembase64', 'fileFoto');"
+																	class="form-control-file"
+																	style="margin-top: 15px; margin-left: 5px">
 															</div>
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="nome" id="nome"
@@ -75,39 +89,35 @@
 																	class="float-label" style="color: black;">Email:</label>
 															</div>
 															<div class="form-group form-default form-static-label">
-																<select  class="form-control"
+																<select class="form-control"
 																	aria-label="Default select example" name="perfil">
-																	<option disabled="disabled">[Selecione o perfil]</option>
-																	
-																	<option value="ADMIN"  <% 
-																	 
-																	ModelLogin modelLogin = (ModelLogin)request.getAttribute("modelLogin");
-																	if( modelLogin != null && modelLogin.getPerfil().equals("ADMIN")) {
-																		out.print(" ");
-																		out.print("selected=\"selected\"");
-																		out.print(" ");
-																	}%>">Admin</option>
-																	
-																	<option value="SECRETARIO" <% 
-																	
-																	 modelLogin = (ModelLogin) request.getAttribute("modelLogin");
-																	if(modelLogin != null && modelLogin.getPerfil().equals("SECRETARIO")) {
-																	    out.print(" ");
-																		out.print("selected=\"selected\"");
-																		out.print(" ");
-																	} %> >Secretário</option>
-																	
-																	<option value="AUXILIAR" <%
-																	
-																	 modelLogin = (ModelLogin) request.getAttribute("modelLogin");
-																	if(modelLogin != null && modelLogin.getPerfil().equals("AUXILIAR")) {
-																		out.print(" ");
-																		out.print("selected=\"selected\"");
-																		out.print(" ");
-																	} %>>Auxiliar</option>
-																</select>
-																<span class="form-bar"></span>
-																<label class="float-label">Perfil:</label>
+																	<option disabled="disabled">[Selecione o
+																		perfil]</option>
+
+																	<option value="ADMIN"<%ModelLogin modelLogin = (ModelLogin) request.getAttribute("modelLogin");
+if (modelLogin != null && modelLogin.getPerfil().equals("ADMIN")) {
+	out.print(" ");
+	out.print("selected=\"selected\"");
+	out.print(" ");
+}%>">Admin</option>
+
+																	<option value="SECRETARIO"
+																		<%modelLogin = (ModelLogin) request.getAttribute("modelLogin");
+if (modelLogin != null && modelLogin.getPerfil().equals("SECRETARIO")) {
+	out.print(" ");
+	out.print("selected=\"selected\"");
+	out.print(" ");
+}%>>Secretário</option>
+
+																	<option value="AUXILIAR"
+																		<%modelLogin = (ModelLogin) request.getAttribute("modelLogin");
+if (modelLogin != null && modelLogin.getPerfil().equals("AUXILIAR")) {
+	out.print(" ");
+	out.print("selected=\"selected\"");
+	out.print(" ");
+}%>>Auxiliar</option>
+																</select> <span class="form-bar"></span> <label
+																	class="float-label">Perfil:</label>
 															</div>
 
 															<div class="form-group form-default form-static-label">
@@ -125,32 +135,26 @@
 																	class="float-label" style="color: black;">Password:</label>
 															</div>
 															<div class="form-group form-default form-static-label">
-																<input type="radio" name="sexo" checked="checked" value="MASCULINO" <%
-																 
-																modelLogin = (ModelLogin) request.getAttribute("modelLogin");
-																
-																if(modelLogin != null && modelLogin.getSexo().equals("MASCULINO")){
-																	out.print("");
-																	out.print("checked=\"checked\"");
-																	out.print("");
-																}
-																
-																%>>Masculino</>
-																
-																<input type="radio" name="sexo" value="FEMININO" <% 
-																	
-																modelLogin = (ModelLogin) request.getAttribute("modelLogin");
-																	
-																	if(modelLogin != null && modelLogin.getSexo().equals("FEMININO")){
-																		out.print("");
-																		out.print("checked=\"checked\"");
-																		out.print("");
-																	}
-																%>
-																
-																>Feminino</>
+																<input type="radio" name="sexo" checked="checked"
+																	value="MASCULINO"
+																	<%modelLogin = (ModelLogin) request.getAttribute("modelLogin");
+
+if (modelLogin != null && modelLogin.getSexo().equals("MASCULINO")) {
+	out.print("");
+	out.print("checked=\"checked\"");
+	out.print("");
+}%>>Masculino</>
+
+																<input type="radio" name="sexo" value="FEMININO"
+																	<%modelLogin = (ModelLogin) request.getAttribute("modelLogin");
+
+if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
+	out.print("");
+	out.print("checked=\"checked\"");
+	out.print("");
+}%>>Feminino</>
 															</div>
-															
+
 															<button type="button"
 																class="btn btn-primary waves-effect waves-light"
 																onclick="limparForm();">Novo</button>
@@ -170,9 +174,8 @@
 											</div>
 										</div>
 									</div>
-									<span id="msg">${msg}</span>
-									<span id="msgFoto">${msgFoto}</span>
-								
+									<span id="msg">${msg}</span> <span id="msgFoto">${msgFoto}</span>
+
 									<div style="height: 300px; overflow: scroll;">
 										<table class="table" id="tabelaresultadosview">
 											<thead>
@@ -358,25 +361,24 @@
 			}
 
 		}
-		
+
 		function visualizarImg(fotoembase64, fileFoto) {
-			
+
 			var preview = document.getElementById(fotoembase64);// campo IMG html
 			var fileUser = document.getElementById(fileFoto).files[0];
 			var reader = new FileReader();
-			
-			reader.onloadend = function () {
+
+			reader.onloadend = function() {
 				preview.src = reader.result; // carrega a foto na tela
 			}
-			
-			if(fileUser){
+
+			if (fileUser) {
 				reader.readAsDataURL(fileUser);/*Preview da imagem*/
-			}else{
+			} else {
 				preview.src = '';
 			}
-			
+
 		}
-		
 	</script>
 </body>
 

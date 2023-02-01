@@ -119,9 +119,6 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			String perfil = request.getParameter("perfil");
 			String sexo = request.getParameter("sexo");
 			// String fileFoto = request.getParameter("fileFoto");
-			
-			
-			
 
 			ModelLogin modelLogin = new ModelLogin();
 			modelLogin.setId(id != null && !id.isEmpty() ? Long.parseLong(id) : null);
@@ -131,29 +128,29 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			modelLogin.setSenha(senha);
 			modelLogin.setPerfil(perfil);
 			modelLogin.setSexo(sexo);
-			
-			
+
 			String msgFoto = "";
 			Part part = request.getPart("fileFoto");
 			/*
-			System.out.println(part.toString().isEmpty());
-			System.out.println(part.getName());
-			System.out.println(part.getSubmittedFileName());
-			System.out.println(part.getSubmittedFileName().toString().isEmpty());
-			*/
+			 * System.out.println(part.toString().isEmpty());
+			 * System.out.println(part.getName());
+			 * System.out.println(part.getSubmittedFileName());
+			 * System.out.println(part.getSubmittedFileName().toString().isEmpty());
+			 */
+
+			if (part.getSize() > 0) {
 			
-			if(part.getSubmittedFileName().toString().isEmpty()) {
-				 msgFoto = "porem foto não enviada";
-			}else {
+
 				byte[] foto = IOUtils.toByteArray(part.getInputStream());
 				new org.apache.commons.codec.binary.Base64();
-				String imagemBase64 = "data:image/" + part.getContentType().split("\\/")[1] + ";base64;" + org.apache.commons.codec.binary.Base64.encodeBase64String(foto);
+				String imagemBase64 = "data:image/" + part.getContentType().split("\\/")[1] + ";base64,"
+						+ org.apache.commons.codec.binary.Base64.encodeBase64String(foto);
 				System.out.println(imagemBase64);
-				
+
 				modelLogin.setFotoUser(imagemBase64);
-				modelLogin.setEstensaoFotoUser(part.getContentType().split("\\/")[1]);
+				modelLogin.setExtensaoFotoUser(part.getContentType().split("\\/")[1]);
+
 			}
-			
 
 			if (daoUsuarioRepository.validaLogin(modelLogin.getLogin()) && modelLogin.getId() == null) {
 				msg = "Já existe usuário com o mesmo login, informe outro login";
