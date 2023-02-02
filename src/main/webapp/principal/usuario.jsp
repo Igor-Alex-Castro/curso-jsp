@@ -58,8 +58,10 @@
 																<div class="input-group-prepend">
 																	<c:if
 																		test="${modelLogin.fotoUser != '' && modelLogin.fotoUser != null}">
+																		<a href="<%= request.getContextPath()%>/ServletUsuarioController?acao=dowmloadFoto&id=${modelLogin.id}">
 																		<img alt="Imagem user" id="fotoembase64"
 																			src="${modelLogin.fotoUser}" width="70px">
+																		</a>
 																	</c:if>
 																	<c:if
 																		test="${modelLogin.fotoUser == '' || modelLogin.fotoUser == null }">

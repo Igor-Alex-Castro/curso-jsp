@@ -1,9 +1,11 @@
 package servlets;
 
+import java.io.Console;
 import java.io.IOException;
 
 import java.util.List;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.compress.utils.IOUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -87,7 +89,16 @@ public class ServletUsuarioController extends ServletGenericUtil {
 				request.setAttribute("msg", "Usuários carregados");
 				request.setAttribute("modelLogins", modelLogins);
 				request.getRequestDispatcher("/principal/usuario.jsp").forward(request, response);
-
+			} else if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("dowmloadFoto")) {
+				String idUser = request.getParameter("id");
+				
+				ModelLogin modelLogin = daoUsuarioRepository.consultarUsuarioId(idUser, super.getUserLogado(request));
+				if(modelLogin.getFotoUser() != null && !modelLogin.getFotoUser().isEmpty()) {
+					new org.apache.commons.codec.binary.Base64();
+					System.out.println(modelLogin.getExtensaoFotoUser());
+					response.setHeader("Content-Disposition", "attachment;filename=arquivo." + modelLogin.getExtensaoFotoUser());
+					response.getOutputStream().write( Base64.decodeBase64(modelLogin.getFotoUser().split("\\,")[1]));
+				}
 			} else {
 
 				List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
