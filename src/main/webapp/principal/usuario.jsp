@@ -1,10 +1,10 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
 <%@page import="model.ModelLogin"%>
+
 
 
 <!DOCTYPE html>
@@ -45,7 +45,7 @@
 
 														<form class="form-material" enctype="multipart/form-data"
 															action="<%=request.getContextPath()%>/ServletUsuarioController"
-															method="post" id="formUser">
+															method="post" id="formUser" name="formUser">
 															<input type="hidden" name="acao" id="acao" value="">
 
 															<div class="form-group form-default form-static-label">
@@ -58,8 +58,9 @@
 																<div class="input-group-prepend">
 																	<c:if
 																		test="${modelLogin.fotoUser != '' && modelLogin.fotoUser != null}">
-																		<a href="<%= request.getContextPath()%>/ServletUsuarioController?acao=dowmloadFoto&id=${modelLogin.id}">
-																		<img alt="Imagem user" id="fotoembase64"
+																		<a
+																			href="<%=request.getContextPath()%>/ServletUsuarioController?acao=dowmloadFoto&id=${modelLogin.id}">
+																			<img alt="Imagem user" id="fotoembase64"
 																			src="${modelLogin.fotoUser}" width="70px">
 																		</a>
 																	</c:if>
@@ -121,7 +122,53 @@ if (modelLogin != null && modelLogin.getPerfil().equals("AUXILIAR")) {
 																</select> <span class="form-bar"></span> <label
 																	class="float-label">Perfil:</label>
 															</div>
-
+															<!--  
+															<div class="form-group form-default form-static-label">
+																<input onblur="pesquisaCep();" type="text" name="cep" id="cep"
+																	required="required" class="form-control"
+																	value="${modelLogin.cep}"> <span
+																	class="form-bar"></span> <label class="float-label"
+																	style="color: black;">Cep:</label>
+															</div>
+															
+															<div class="form-group form-default form-static-label">
+																<input type="text" name="logradouro" id="logradouro"
+																	required="required" class="form-control"
+																	value="${modelLogin.logradouro}"> <span
+																	class="form-bar"></span> <label class="float-label"
+																	style="color: black;">Logradouro:</label>
+															</div>
+															
+															<div class="form-group form-default form-static-label">
+																<input type="text" name="bairro" id="bairro"
+																	required="required" class="form-control"
+																	value="${modelLogin.bairro}"> <span
+																	class="form-bar"></span> <label class="float-label"
+																	style="color: black;">Bairro:</label>
+															</div>
+															<div class="form-group form-default form-static-label">
+																<input type="text" name="localidade" id="localidade"
+																	required="required" class="form-control"
+																	value="${modelLogin.localidade}"> <span
+																	class="form-bar"></span> <label class="float-label"
+																	style="color: black;">Localidade:</label>
+															</div>
+															
+															<div class="form-group form-default form-static-label">
+																<input type="text" name="uf" id="uf"
+																	required="required" class="form-control"
+																	value="${modelLogin.uf}"> <span
+																	class="form-bar"></span> <label class="float-label"
+																	style="color: black;">Estado:</label>
+															</div>
+																<div class="form-group form-default form-static-label">
+																<input type="text" name="numero" id="numero"
+																	required="required" class="form-control"
+																	value="${modelLogin.numero}"> <span
+																	class="form-bar"></span> <label class="float-label"
+																	style="color: black;">Numero:</label>
+															</div>
+															-->
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="login" id="login"
 																	required="required" class="form-control"
@@ -176,7 +223,7 @@ if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
 											</div>
 										</div>
 									</div>
-									<span id="msg">${msg}</span> <span id="msgFoto">${msgFoto}</span>
+									<span id="msg">${msg}</span>
 
 									<div style="height: 300px; overflow: scroll;">
 										<table class="table" id="tabelaresultadosview">
@@ -267,6 +314,28 @@ if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
 
 
 	<script type="text/javascript">
+	/*	
+	function pesquisaCep() {
+			var cep = $("#cep").val();
+
+			$.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?",
+					function(dados) {
+
+						if (!("erro" in dados)) {
+							//Atualiza os campos com os valores da consulta.
+							$("#cep").val(dados.cep);
+							$("#logradouro").val(dados.logradouro);
+							$("#bairro").val(dados.bairro);
+							$("#localidade").val(dados.localidade);
+							$("#uf").val(dados.uf);
+
+						}
+
+					});
+
+		}
+	*/
+
 		function buscarUsuario() {
 			var nomeBusca = document.getElementById('nomeBusca').value;
 
