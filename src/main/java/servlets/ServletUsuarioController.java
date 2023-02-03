@@ -130,14 +130,14 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			String sexo = request.getParameter("sexo");
 			
 			//cep, logradouro, bairro, localidade, uf, numero 
-			/*
+			
 			String cep = request.getParameter("cep");
 			String logradouro = request.getParameter("logradouro");
 			String bairro = request.getParameter("bairro");
 			String localidade = request.getParameter("localidade");
 			String uf = request.getParameter("uf");
-			String numero  = request.getParameter("numero ");
-					*/
+			String numero  = request.getParameter("numero");
+					
 			// String fileFoto = request.getParameter("fileFoto");
 
 			ModelLogin modelLogin = new ModelLogin();
@@ -147,14 +147,15 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			modelLogin.setLogin(login);
 			modelLogin.setSenha(senha);
 			modelLogin.setPerfil(perfil);
+			modelLogin.setSexo(sexo);
 			
 			//cep, logradouro, bairro, localidade, uf, numero 
-			modelLogin.setCep("---");
-			modelLogin.setLogradouro("---");
-			modelLogin.setBairro("---");
-			modelLogin.setLocalidade("---");
-			modelLogin.setUf("---");
-			modelLogin.setNumero("---");
+			modelLogin.setCep(cep);
+			modelLogin.setLogradouro(logradouro);
+			modelLogin.setBairro(bairro);
+			modelLogin.setLocalidade(localidade);
+			modelLogin.setUf(uf);
+			modelLogin.setNumero(numero);
 
 			
 			Part part = request.getPart("fileFoto");

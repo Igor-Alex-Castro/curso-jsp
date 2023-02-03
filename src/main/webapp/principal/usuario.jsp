@@ -122,7 +122,7 @@ if (modelLogin != null && modelLogin.getPerfil().equals("AUXILIAR")) {
 																</select> <span class="form-bar"></span> <label
 																	class="float-label">Perfil:</label>
 															</div>
-															<!--  
+															
 															<div class="form-group form-default form-static-label">
 																<input onblur="pesquisaCep();" type="text" name="cep" id="cep"
 																	required="required" class="form-control"
@@ -168,7 +168,7 @@ if (modelLogin != null && modelLogin.getPerfil().equals("AUXILIAR")) {
 																	class="form-bar"></span> <label class="float-label"
 																	style="color: black;">Numero:</label>
 															</div>
-															-->
+															
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="login" id="login"
 																	required="required" class="form-control"
@@ -314,7 +314,7 @@ if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
 
 
 	<script type="text/javascript">
-	/*	
+	
 	function pesquisaCep() {
 			var cep = $("#cep").val();
 
@@ -334,7 +334,7 @@ if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
 					});
 
 		}
-	*/
+	
 
 		function buscarUsuario() {
 			var nomeBusca = document.getElementById('nomeBusca').value;
